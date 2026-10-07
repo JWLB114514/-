@@ -33,13 +33,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //碰撞玩家造成伤害
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Player p = other.collider.GetComponent<Player>();
-        if (p != null)
+        if (other.CompareTag("Player"))
         {
-            p.TakeDamage(damage);
+            Player player = other.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage();
+            }
         }
     }
 }
